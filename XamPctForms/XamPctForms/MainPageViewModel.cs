@@ -1,11 +1,47 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
+using Xamarin.Forms;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System;
+using SQLite;
 
 namespace XamPctForms
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public MainPageViewModel()
+        {
+            UserListCommand = new Command(async () =>
+            {
+                var page = new UserListPage();
+                await Application.Current.MainPage.Navigation.PushAsync(page);
+            });
+
+            SaveUserCommand = new Command(async () =>
+            {
+                UserDTO user = new UserDTO()
+                {
+                    UserName = this.UserName,
+                    Password = this.Password
+                };
+
+                SaveUserToDatabase(user);
+                var page = new UserListPage();
+                await Application.Current.MainPage.Navigation.PushAsync(page);
+            });
+        }
+
+        private void SaveUserToDatabase(UserDTO user)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<UserDTO>();
+                int rowsAdded = conn.Insert(user);
+            } 
+        }
 
         private string userName;
         public string UserName
@@ -29,6 +65,22 @@ namespace XamPctForms
                 password = value;
                 OnPropertyChanged(nameof(Password));
             }
+        }
+
+        private ICommand userListCommand;
+
+        public ICommand UserListCommand
+        {
+            get { return userListCommand; }
+            set { userListCommand = value; }
+        }
+
+        private ICommand saveUserCommand;
+
+        public ICommand SaveUserCommand
+        {
+            get { return saveUserCommand; }
+            set { saveUserCommand = value; }
         }
 
 

@@ -27,7 +27,12 @@
            VerticalOptions="CenterAndExpand" 
            WidthRequest="200"
             />
-        
+
+        <Button x:Name="UserListButton"
+                Text="User List"
+                Command="{Binding SaveUserCommand}"
+                />
+
     </StackLayout>
 
 </ContentPage>
