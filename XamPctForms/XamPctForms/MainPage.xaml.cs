@@ -16,6 +16,7 @@ namespace XamPctForms
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainPageViewModel();
         }
     }
 }

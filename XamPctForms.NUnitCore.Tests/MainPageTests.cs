@@ -23,5 +23,7 @@ namespace XamPctForms.NUnitCore.Tests
             //Assert
             Assert.IsTrue(valid);
         }
+
+        //TODO: don't allow abc35 ABC35 333333 aaaa3 AaAaAa3
     }
 }
