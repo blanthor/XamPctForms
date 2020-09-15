@@ -4,14 +4,15 @@ using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using SQLite;
+using System.Threading.Tasks;
 
 namespace XamPctForms
 {
     class UserListPageViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<string> userList;
+        private ObservableCollection<UserDTO> userList;
 
-        public ObservableCollection<string> UserList
+        public ObservableCollection<UserDTO> UserList
         {
             get => userList;
             set
@@ -22,30 +23,35 @@ namespace XamPctForms
             }
         }
 
+        //TODO: Implement a DB Class https://docs.microsoft.com/en-us/xamarin/xamarin-forms/data-cloud/data/databases
+
         internal void ReadFromDatabase()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.CreateTable<UserDTO>();
                 //ObservableCollection<UserDTO> 
-                    var CurrentUsers = conn.Table<UserDTO>().ToList();
+                //var CurrentUsers = conn.Table<UserDTO>().ToList();
+                UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
+
             }
         }
 
         public UserListPageViewModel(string newUser = "")
         {
 
-            UserList = new ObservableCollection<string>();
-            PopulateUserList();
+            //UserList = new ObservableCollection<string>();
+            DisplayUserList();
         }
 
-        private void PopulateUserList()
+        private void DisplayUserList()
         {
-            UserList.Add("Moe");
-            UserList.Add("Curly");
-            UserList.Add("Larry");
+            //UserList.Add("Moe");
+            //UserList.Add("Curly");
+            //UserList.Add("Larry");
 
             //TODO: Change to showing actual data.
+            ReadFromDatabase();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

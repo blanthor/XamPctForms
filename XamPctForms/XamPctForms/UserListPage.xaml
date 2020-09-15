@@ -13,7 +13,10 @@
             <ListView x:Name="UserListView" ItemsSource="{Binding UserList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding }" />
+                        <TextCell Text="{Binding UserName}"
+                                  Detail="{Binding Password}"
+                                  TextColor="DarkGreen"
+                                  />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

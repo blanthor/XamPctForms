@@ -38,7 +38,7 @@ namespace XamPctForms
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
-                conn.CreateTable<UserDTO>();
+                conn.CreateTable<UserDTO>(); // Conditionally creates table
                 int rowsAdded = conn.Insert(user);
             } 
         }
