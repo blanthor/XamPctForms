@@ -12,7 +12,7 @@ namespace XamPctForms
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new AddUserPage());
         }
 
         public App(string fullPath) : this()

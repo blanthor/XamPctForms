@@ -15,8 +15,6 @@ namespace XamPctForms
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            //((UserListPageViewModel)BindingContext).ReadFromDatabase();
         }
     }
 }

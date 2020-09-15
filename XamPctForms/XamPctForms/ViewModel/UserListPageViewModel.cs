@@ -27,7 +27,6 @@ namespace XamPctForms
             {
                 conn.CreateTable<UserDTO>();
                 UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
-
             }
         }
 
@@ -39,6 +38,8 @@ namespace XamPctForms
         private void DisplayUserList()
         {
             ReadFromDatabase();
+
+            //TODO: Scroll to the very end.
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
