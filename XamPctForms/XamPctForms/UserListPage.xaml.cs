@@ -16,7 +16,7 @@ namespace XamPctForms
         {
             base.OnAppearing();
 
-            ((UserListPageViewModel)BindingContext).ReadFromDatabase();
+            //((UserListPageViewModel)BindingContext).ReadFromDatabase();
         }
     }
 }

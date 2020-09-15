@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
 using SQLite;
-using System.Threading.Tasks;
 
 namespace XamPctForms
 {
@@ -30,8 +26,6 @@ namespace XamPctForms
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.CreateTable<UserDTO>();
-                //ObservableCollection<UserDTO> 
-                //var CurrentUsers = conn.Table<UserDTO>().ToList();
                 UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
 
             }
@@ -39,18 +33,11 @@ namespace XamPctForms
 
         public UserListPageViewModel(string newUser = "")
         {
-
-            //UserList = new ObservableCollection<string>();
             DisplayUserList();
         }
 
         private void DisplayUserList()
         {
-            //UserList.Add("Moe");
-            //UserList.Add("Curly");
-            //UserList.Add("Larry");
-
-            //TODO: Change to showing actual data.
             ReadFromDatabase();
         }
 
@@ -59,7 +46,5 @@ namespace XamPctForms
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-
     }
 }
