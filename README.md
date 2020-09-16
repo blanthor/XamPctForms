@@ -26,11 +26,13 @@ A modified version of Validation was taken from eShopContainers. Ideally I would
 
 ## Known Issues
 Ability to delete was left unfinished.
+iOS database implementation is not tested.
+Prioritizing the validation error messages needs to be done.
 
 ## Possible Improvements
 * An MVVM framework like Prism, MvvmLight, or MvvMCross was not used becuase navigation is quite simple.
-* An IoC container is not used. Therefore mocking database interactions is feasible.
-* Dependency Service for platform-specific database paths for the new UserDatabase object to use.
+* An IoC container is not used. Therefore mocking database interactions is not feasible.
+* Dependency Service for platform-specific database paths should be tested for iOS.
 
 ## GitHub Repo 
 https://github.com/blanthor/XamPctForms.git

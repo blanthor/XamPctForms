@@ -92,8 +92,9 @@ namespace XamPctForms.Model.Validation
             }
             var str = value as string;
 
-            Regex rx = new Regex(@"^[a-zA-Z]{1,11}[1-8]{1,11}$");
+            Regex rx = new Regex(@"^[a-zA-Z]{1,11}[1-8]{1,11}|[1-8]{1,11}[a-zA-Z]{1,11}$");
             Match match = rx.Match(str);
+
             return match.Success;
         }
     }

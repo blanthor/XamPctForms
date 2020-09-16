@@ -5,6 +5,9 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
+using XamPctForms.DAL;
+using XamPctForms.iOS.Services;
 
 namespace XamPctForms.iOS
 {
@@ -25,11 +28,10 @@ namespace XamPctForms.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            string dbName = "XamPctFormDB.db3";
-            string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "..", "Library");
-            string fullPath = Path.Combine(folderPath, dbName);
+            // Dependency service and platform-specific solution. No time or devices to test currently.
+            DependencyService.Register<IDatabasePathService, DatabasePathService>();
 
-            LoadApplication(new App(fullPath));
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
