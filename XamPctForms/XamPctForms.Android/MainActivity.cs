@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
+using XamPctForms.DAL;
+using XamPctForms.Droid.Services;
 
 namespace XamPctForms.Droid
 {
@@ -22,11 +25,13 @@ namespace XamPctForms.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            string dbName = "XamPctFormDB.db3";
-            string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            string fullPath = System.IO.Path.Combine(folderPath, dbName);
+            //string dbName = "XamPctFormDB.db3";
+            //string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            //string fullPath = System.IO.Path.Combine(folderPath, dbName);
+            
+            DependencyService.Register<IDatabasePathService, DatabasePathService>();
 
-            LoadApplication(new App(fullPath));
+            LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

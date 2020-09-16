@@ -14,11 +14,10 @@ namespace XamPctForms
             InitializeComponent();
 
             MainPage = new NavigationPage(new AddUserPage());
-        }
 
-        public App(string fullPath) : this()
-        {
-            FilePath = fullPath;
+            IDatabasePathService service = DependencyService.Get<IDatabasePathService>();
+
+            FilePath = service.GetPath(DBConstants.DatabaseFilename);
         }
 
         static UserDatabase database;
