@@ -56,6 +56,7 @@ namespace XamPctForms.Model.Validation
         public string ValidationMessage { get; set; }
         public bool Check(T value)
         {
+            //TODO: Replace regex approach with nested string substring search
             if (value == null)
             {
                 return false;
@@ -77,7 +78,7 @@ namespace XamPctForms.Model.Validation
                 return false;
             }
             var str = value as string;
-            Regex rx = new Regex(@"^[a-zA-Z][1-8]$");
+            Regex rx = new Regex(@"^[a-zA-Z]{1,11}[1-8]{1,11}$");
             Match match = rx.Match(str);
             return match.Success;
         }
