@@ -6,6 +6,8 @@
              mc:Ignorable="d"
              x:Class="XamPctForms.App">
     <Application.Resources>
-
+        <Style TargetType="ListView">
+            <Setter Property="BackgroundColor" Value="Azure"/>
+        </Style>
     </Application.Resources>
 </Application>

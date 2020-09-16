@@ -10,13 +10,16 @@
             <Label Text="Users"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <ListView x:Name="UserListView" ItemsSource="{Binding UserList}">
+            <ListView x:Name="UserListView" ItemsSource="{Binding UserList}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding UserName}"
-                                  Detail="{Binding Password}"
-                                  TextColor="DarkGreen"
-                                  />
+
+                            <TextCell Text="{Binding UserName}" Detail="{Binding Password}" TextColor="DarkGreen">
+                                <TextCell.ContextActions>
+                                    <MenuItem Clicked="OnGesture" CommandParameter="{Binding .}" IsDestructive="True" />
+                                </TextCell.ContextActions>
+                            </TextCell>
+
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

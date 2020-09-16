@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
 using SQLite;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace XamPctForms
@@ -25,33 +23,27 @@ namespace XamPctForms
 
         //TODO: Implement a DB Class https://docs.microsoft.com/en-us/xamarin/xamarin-forms/data-cloud/data/databases
 
-        internal void ReadFromDatabase()
+        internal async Task ReadFromDatabase()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
-                conn.CreateTable<UserDTO>();
-                //ObservableCollection<UserDTO> 
-                //var CurrentUsers = conn.Table<UserDTO>().ToList();
-                UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
-
+                //conn.CreateTable<UserDTO>();
+                //UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
+                List<UserDTO> users = await App.Database.GetItemsAsync();
+                UserList = new ObservableCollection<UserDTO>(users);
             }
         }
 
         public UserListPageViewModel(string newUser = "")
         {
-
-            //UserList = new ObservableCollection<string>();
             DisplayUserList();
         }
 
         private void DisplayUserList()
         {
-            //UserList.Add("Moe");
-            //UserList.Add("Curly");
-            //UserList.Add("Larry");
+            _ = ReadFromDatabase();
 
-            //TODO: Change to showing actual data.
-            ReadFromDatabase();
+            //TODO: Scroll to the very end.
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -59,7 +51,5 @@ namespace XamPctForms
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-
     }
 }

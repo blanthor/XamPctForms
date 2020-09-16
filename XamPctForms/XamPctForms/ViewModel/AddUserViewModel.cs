@@ -8,11 +8,11 @@ using SQLite;
 
 namespace XamPctForms
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class AddUserViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainPageViewModel()
+        public AddUserViewModel()
         {
             UserListCommand = new Command(async () =>
             {
@@ -29,6 +29,8 @@ namespace XamPctForms
                 };
 
                 SaveUserToDatabase(user);
+                UserName = "";
+                Password = "";
                 var page = new UserListPage();
                 await Application.Current.MainPage.Navigation.PushAsync(page);
             });
@@ -36,14 +38,15 @@ namespace XamPctForms
 
         private void SaveUserToDatabase(UserDTO user)
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<UserDTO>(); // Conditionally creates table
-                int rowsAdded = conn.Insert(user);
-            } 
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    conn.CreateTable<UserDTO>(); // Conditionally creates table
+            //    int rowsAdded = conn.Insert(user);
+            //} 
+            App.Database.SaveItemAsync(user);
         }
 
-        private string userName;
+        private string userName = "";
         public string UserName
         {
             get { return userName; }
@@ -55,7 +58,7 @@ namespace XamPctForms
             }
         }
 
-        private string password;
+        private string password = "";
         public string Password
         {
             get { return password; }
@@ -96,6 +99,8 @@ namespace XamPctForms
 
             Regex rx = new Regex(@"^([a-zA-Z0-9]){5,12}$");
             //TODO: check for repeating sequence
+            //TODO: move to IValidator
+            //TODO: change where test is pointing
 
             MatchCollection matches = rx.Matches(trimmedPass);
             return (matches.Count > 0);

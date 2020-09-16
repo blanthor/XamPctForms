@@ -4,11 +4,11 @@ namespace XamPctForms.NUnitCore.Tests
 {
     public class MainPageTests
     {
-        private MainPageViewModel viewModel;
+        private AddUserViewModel viewModel;
         [SetUp]
         public void Setup()
         {
-            viewModel = new XamPctForms.MainPageViewModel();
+            viewModel = new XamPctForms.AddUserViewModel();
         }
 
         [Test]
