@@ -45,7 +45,7 @@ namespace XamPctForms.Model.Validation
                 return false;
             }
             var str = value as string;
-            Regex rx = new Regex(@"^(?!.*(.)\1).{4,10}$");
+            Regex rx = new Regex(@"^(?!.*(.)\1).{5,12}$");
             Match match = rx.Match(str);
             return match.Success;
         }
@@ -56,16 +56,29 @@ namespace XamPctForms.Model.Validation
         public string ValidationMessage { get; set; }
         public bool Check(T value)
         {
-            //TODO: Replace regex approach with nested string substring search
             if (value == null)
             {
                 return false;
             }
             var str = value as string;
-            Regex rx = new Regex(@"^(?!.*(.)\1).{5,12}$");
-            Match match = rx.Match(str);
-            return match.Success;
+            int length = str.Length;
+            bool matchFound = true;
+            for (int segmentLength = 2; segmentLength < 7; segmentLength++)
+            {
+                // each position, find seg, go accross
+                for (int startIndex = 0; startIndex < length - segmentLength; startIndex++)
+                {
+                    string sub = str.Substring(startIndex, segmentLength);
+                    // * look in rest of string
+                    string remainder = str.Substring(startIndex + segmentLength);
+                    int matchIndex = remainder.IndexOf(sub);
+                    if (matchIndex > 0) return false;
+                }
+            }
+
+            return matchFound;
         }
+
     }
 
     public class AtLeastOneNumberAndLetterEachRule<T> : IValidationRule<T>
@@ -78,10 +91,10 @@ namespace XamPctForms.Model.Validation
                 return false;
             }
             var str = value as string;
+
             Regex rx = new Regex(@"^[a-zA-Z]{1,11}[1-8]{1,11}$");
             Match match = rx.Match(str);
             return match.Success;
         }
     }
-
 }

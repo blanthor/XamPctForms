@@ -52,38 +52,13 @@ namespace XamPctForms
 
         private void SaveUserToDatabase(UserDTO user)
         {
-            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            //{
-            //    conn.CreateTable<UserDTO>(); // Conditionally creates table
-            //    int rowsAdded = conn.Insert(user);
-            //} 
             App.Database.SaveItemAsync(user);
         }
 
         #region Properties
         private ValidatableObject<string> userName;
-        //public string UserName
-        //{
-        //    get { return userName; }
-        //    set 
-        //    {
-        //        if (userName == value) return;
-        //        userName = value;
-        //        OnPropertyChanged(nameof(UserName));
-        //    }
-        //}
 
         private ValidatableObject<string> password;
-        //public string Password
-        //{
-        //    get { return password; }
-        //    set 
-        //    {
-        //        if (password == value) return;
-        //        password = value;
-        //        OnPropertyChanged(nameof(Password));
-        //    }
-        //}
 
         public ValidatableObject<string> UserName
         {
@@ -94,7 +69,6 @@ namespace XamPctForms
             set
             {
                 userName = value;
-                //RaisePropertyChanged(() => UserName);
                 OnPropertyChanged(nameof(UserName));
             }
         }
@@ -107,7 +81,6 @@ namespace XamPctForms
             set
             {
                 password = value;
-                //RaisePropertyChanged(() => Password);
                 OnPropertyChanged(nameof(Password));
             }
         }
@@ -117,8 +90,8 @@ namespace XamPctForms
         public string PasswordErrors
         {
             get { return passwordErrors; }
-            set 
-            { 
+            set
+            {
                 passwordErrors = value;
                 OnPropertyChanged(nameof(PasswordErrors));
             }
@@ -126,7 +99,8 @@ namespace XamPctForms
 
         #endregion //Properties
 
-        
+        #region Validation Methods
+        //TODO: Regions might be sign that refactoring is needed.
         private void AddValidations()
         {
             userName.Validations.Add(new IsNotNullOrEmptyRule<string>
@@ -169,6 +143,7 @@ namespace XamPctForms
         {
             return password.Validate();
         }
+        #endregion //Validation Methods
 
         private ICommand userListCommand;
 
@@ -189,20 +164,6 @@ namespace XamPctForms
         void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public bool IsValidPassword(string pass)
-        {
-            string trimmedPass = pass.Trim();
-            if (trimmedPass.Length < 5 || trimmedPass.Length > 12) return false;
-
-            Regex rx = new Regex(@"^([a-zA-Z0-9]){5,12}$");
-            //TODO: check for repeating sequence
-            //TODO: move to IValidator
-            //TODO: change where test is pointing
-
-            MatchCollection matches = rx.Matches(trimmedPass);
-            return (matches.Count > 0);
         }
     }
 }

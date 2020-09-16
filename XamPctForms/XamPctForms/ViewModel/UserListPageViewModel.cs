@@ -21,17 +21,10 @@ namespace XamPctForms
             }
         }
 
-        //TODO: Implement a DB Class https://docs.microsoft.com/en-us/xamarin/xamarin-forms/data-cloud/data/databases
-
         internal async Task ReadFromDatabase()
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                //conn.CreateTable<UserDTO>();
-                //UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
-                List<UserDTO> users = await App.Database.GetItemsAsync();
-                UserList = new ObservableCollection<UserDTO>(users);
-            }
+            List<UserDTO> users = await App.Database.GetItemsAsync();
+            UserList = new ObservableCollection<UserDTO>(users);
         }
 
         public UserListPageViewModel(string newUser = "")
