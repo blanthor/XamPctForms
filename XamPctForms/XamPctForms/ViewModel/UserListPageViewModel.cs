@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
 using SQLite;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace XamPctForms
 {
@@ -21,12 +23,14 @@ namespace XamPctForms
 
         //TODO: Implement a DB Class https://docs.microsoft.com/en-us/xamarin/xamarin-forms/data-cloud/data/databases
 
-        internal void ReadFromDatabase()
+        internal async Task ReadFromDatabase()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
-                conn.CreateTable<UserDTO>();
-                UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
+                //conn.CreateTable<UserDTO>();
+                //UserList = new ObservableCollection<UserDTO>(conn.Table<UserDTO>().ToList());
+                List<UserDTO> users = await App.Database.GetItemsAsync();
+                UserList = new ObservableCollection<UserDTO>(users);
             }
         }
 
@@ -37,7 +41,7 @@ namespace XamPctForms
 
         private void DisplayUserList()
         {
-            ReadFromDatabase();
+            _ = ReadFromDatabase();
 
             //TODO: Scroll to the very end.
         }

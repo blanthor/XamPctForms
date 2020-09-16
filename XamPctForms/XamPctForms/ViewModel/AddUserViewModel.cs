@@ -38,11 +38,12 @@ namespace XamPctForms
 
         private void SaveUserToDatabase(UserDTO user)
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<UserDTO>(); // Conditionally creates table
-                int rowsAdded = conn.Insert(user);
-            } 
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    conn.CreateTable<UserDTO>(); // Conditionally creates table
+            //    int rowsAdded = conn.Insert(user);
+            //} 
+            App.Database.SaveItemAsync(user);
         }
 
         private string userName = "";

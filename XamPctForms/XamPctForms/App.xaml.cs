@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamPctForms.DAL;
 
 namespace XamPctForms
 {
@@ -18,6 +19,19 @@ namespace XamPctForms
         public App(string fullPath) : this()
         {
             FilePath = fullPath;
+        }
+
+        static UserDatabase database;
+        public static UserDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new UserDatabase();
+                }
+                return database;
+            }
         }
 
         protected override void OnStart()
