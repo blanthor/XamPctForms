@@ -8,7 +8,7 @@
 
     <StackLayout Spacing="15" VerticalOptions="Center">
         <!-- Place new controls here -->
-        <Label Text="Login Page" FontSize="Large"
+        <Label Text="Add User" FontSize="Large"
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" 
                TextColor="Black"/>

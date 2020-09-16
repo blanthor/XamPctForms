@@ -16,7 +16,7 @@ namespace XamPctForms
         public AddUserPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
+            BindingContext = new AddUserViewModel();
         }
     }
 }

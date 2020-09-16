@@ -1,5 +1,5 @@
 # XamPctForms
-This is an answer to the practical coding test shown in the text below. I think Xamarin.Forms should be used.
+This is an answer to the practical coding test shown in the text below. I did this work with Xamarin.Forms despite the directions, because I was asked to determine how much time it would take. It took 4.1 hours, but I didn't know whom to ask about the open-ended requirement of making it "production ready". 
 ## Xamarin – Practical Coding Test
 Please review the problem below and provide a solution back to us on the specified date.
 Note: there is no extra credit for a rushed solution.
