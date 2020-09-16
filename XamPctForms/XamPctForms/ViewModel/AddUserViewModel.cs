@@ -141,6 +141,18 @@ namespace XamPctForms
             {
                 ValidationMessage = "Only Alphanumeric characters are allowed."
             });
+            password.Validations.Add(new AtLeastOneNumberAndLetterEachRule<string>
+            {
+                ValidationMessage = "Password should have at least one number and one letter."
+            });
+            password.Validations.Add(new NoRepeatingCharacterRule<string>
+            {
+                ValidationMessage = "Password must not have repeating characters."
+            });
+            password.Validations.Add(new NoRepeatingSequencRule<string>
+            {
+                ValidationMessage = "Password must not have repeating patterns."
+            });
         }
 
         private bool Validate()
@@ -149,11 +161,11 @@ namespace XamPctForms
             bool isValidPassword = ValidatePassword();
             return isValidUser && isValidPassword;
         }
-        private bool ValidateUserName()
+        public bool ValidateUserName()
         {
             return userName.Validate();
         }
-        private bool ValidatePassword()
+        public bool ValidatePassword()
         {
             return password.Validate();
         }
