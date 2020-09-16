@@ -15,9 +15,7 @@
                     <DataTemplate>
 
                             <TextCell Text="{Binding UserName}" Detail="{Binding Password}" TextColor="DarkGreen">
-                                <TextCell.ContextActions>
-                                    <MenuItem Clicked="OnGesture" CommandParameter="{Binding .}" IsDestructive="True" />
-                                </TextCell.ContextActions>
+                         
                             </TextCell>
 
                     </DataTemplate>

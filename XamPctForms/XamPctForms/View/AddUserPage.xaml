@@ -14,7 +14,7 @@
                TextColor="Black"/>
         <Entry
            x:Name="UserNameEntry"
-           Text="{Binding UserName, Mode=TwoWay}"
+           Text="{Binding UserName.Value, Mode=TwoWay}"
            Placeholder="User Name"
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" 
@@ -22,14 +22,26 @@
            />
         <Entry 
            x:Name="PasswordEntry"
-           Text="{Binding Password, Mode=TwoWay}"
+           Text="{Binding Password.Value, Mode=TwoWay}"
            Placeholder="Password" IsPassword="True"
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" 
-           WidthRequest="200"
-            />
+           WidthRequest="200">
+        </Entry>
+        <Label x:Name="PasswordErrorLabel"
+               Text="{Binding PasswordErrors}">
+            <Label.Triggers>
+                <DataTrigger
+                    TargetType="Label"
+                    Binding="{Binding UserName.IsValid}"
+                    Value="False">
+                    <Setter Property="IsVisible"
+                            Value="True"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
 
-        <Button x:Name="UserListButton"
+            <Button x:Name="UserListButton"
                 Text="User List"
                 Command="{Binding SaveUserCommand}"
                 />

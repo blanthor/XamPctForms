@@ -24,7 +24,7 @@ namespace XamPctForms.DAL
             {
                 if (databasePath == null)
                 {
-
+                    //TODO: Platform-specific paths.
                     //var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                     var basePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
                     databasePath = Path.Combine(basePath, DatabaseFilename);
