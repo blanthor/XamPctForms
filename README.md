@@ -1,4 +1,4 @@
-# XamPctForms
+# XamPctForms Solutions
 ## Purpose
 This is an answer to the practical coding test shown in the text below.
 ### Xamarin – Practical Coding Test
@@ -20,15 +20,31 @@ Be sure to include all project artifacts necessary to build and run the solution
 All artifacts should be delivered in a single .zip file. Please include the .ipa or .apk files.
 Thank you in advance and we look forward to seeing your work. Feel free to email us if you have any questions.
 ## License
-A modified version of Validation was taken from eShopContainers. Ideally I would look for a NuGet package, after evaluation.
+A modified version of Validation was taken from eShopContainers. Ideally I would look for a NuGet package, after proper evaluation.
+# UserMangagerAndroid
+This is the submitted project for the solution.
+## Know Issues
 
+## Possible Improvements
+* An MvvMCross for Android would greatly help in maintaining a separation of concerns. 
+* Validation logic could be pulled out of the AddUserActivity more.
+* Database calls are currently being done within the two Activities, when porting over the DataBase class and supporting class from the Forms DAL didn't work.
+* Some dead code needs to be removed.
+* Moving the NUnit tests from the Forms project would aid in testing the validation.
+* An IoC container is not used. Therefore mocking the database cannot be done. 
+* UI appearance.
+* Encryption of the password
+* Defensive coding is needed, especially Exception handling.
+
+# XamPctForms
+This is a Forms solution for the challenge.
 ## Known Issues
 Ability to delete was left unfinished.
 iOS database implementation is not tested.
 Prioritizing the validation error messages needs to be done.
 
 ## Possible Improvements
-* An MVVM framework like Prism, MvvmLight, or MvvMCross was not used becuase navigation is quite simple.
+* An MVVM framework like Prism, MvvmLight, or MvvMCross was not used because navigation is quite simple.
 * An IoC container is not used. Therefore mocking database interactions is not feasible.
 * Dependency Service for platform-specific database paths should be tested for iOS.
 
