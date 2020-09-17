@@ -62,7 +62,7 @@ namespace App2.Adapters
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            if(holder is UserViewHolder userViewHolder)
+            if (holder is UserViewHolder userViewHolder)
             {
                 userViewHolder.UserNameTextView.Text = _users[position].UserName;
                 userViewHolder.PasswordTextView.Text = _users[position].Password;
