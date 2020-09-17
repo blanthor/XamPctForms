@@ -1,8 +1,10 @@
-﻿namespace XamPctForms.DAL
+﻿using System.IO;
+
+namespace UserManagerAndroid.Core.DAL
 {
     public static class DBConstants
     {
-        public const string DatabaseFilename = "XamPctFormDB.db3";
+        public const string DatabaseFileName = "XamPctFormDB.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -19,7 +21,8 @@
             {
                 if (databasePath == null)
                 {
-                    databasePath = App.FilePath;
+                    var basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                    databasePath = Path.Combine(basePath, DatabaseFileName);
                 }
                 return databasePath;
             }
