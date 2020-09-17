@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
     android:orientation="vertical">
     <Button
-        android:text="Add"
+        android:text="Add Person"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="25px"
@@ -14,15 +16,16 @@
         android:id="@+id/AddButton" />
     <android.support.v7.widget.RecyclerView
         android:minWidth="25px"
-        android:minHeight="25px"
+        android:minHeight="125px"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:outlineAmbientShadowColor="@color/abc_background_cache_hint_selector_material_dark"
         android:id="@+id/usersRecyclerView" />
-    <ListView
+    <!--<ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="wrap_content"
         android:layout_height="140.0dp"
-        android:backgroundTint="@color/abc_hint_foreground_material_dark"
-        android:id="@+id/listView1" />
+        android:backgroundTint="@color/abc_background_cache_hint_selector_material_dark"
+        android:id="@+id/listView1" />-->
 </LinearLayout>
